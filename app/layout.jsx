@@ -13,7 +13,7 @@ const RootLayout = ({ children }) => {
   return (
     <html lang='en'>
       <body>
-        <Provider session="#">
+        <Provider>
           <div className='main'>
             <div className='gradient' />
           </div>

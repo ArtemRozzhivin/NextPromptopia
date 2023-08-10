@@ -1,6 +1,6 @@
-const { models, model } = require("mongoose")
+const { models, model, Schema } = require("mongoose")
 
-const UserSchema = newSchema({
+const UserSchema = new Schema({
   email: {
     type: String,
     unique: [true, 'Email is already exists!'],
