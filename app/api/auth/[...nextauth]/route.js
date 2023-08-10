@@ -7,8 +7,6 @@ import User from "@models/user"
 const clientId = process.env.CLIENT_ID
 const clientSecretId = process.env.CLIENT_SECRET_ID
 
-// console.log(clientId, clientSecretId)
-
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -23,7 +21,6 @@ const handler = NextAuth({
         email: session.user.email
       }).lean()
 
-      console.log(sessionUser._id, 'TEEEST')
       session.user.id = sessionUser._id
   
       return session

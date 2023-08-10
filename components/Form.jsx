@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
 
-const Form = ({type, prompt, handlePrompt, submitting, handleSubmiting}) => {
+const Form = ({type, prompt, setPrompt, submitting, handleSubmiting}) => {
+
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
@@ -13,15 +14,15 @@ const Form = ({type, prompt, handlePrompt, submitting, handleSubmiting}) => {
         imagination run wild with any AI-powered platform
       </p>
 
-      <form className='mt-10 w-full max-w-2xl flex flex-col gap-10 glassmorphism' onSubmit={handleSubmiting}>
+      <form className='mt-10 w-full max-w-2xl flex flex-col gap-10 glassmorphism' onSubmit={(e) => handleSubmiting(e)}>
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>Your AI prompt</span>
-          <textarea className='form_textarea' placeholder='Write your prompt here...' required value={prompt.text} onChange={(e) => handlePrompt({...prompt, text: e.target.value})}/>
+          <textarea className='form_textarea' placeholder='Write your prompt here...' required value={prompt.text} onChange={(e) => setPrompt({...prompt, text: e.target.value})}/>
         </label>
 
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>Tag of prompt (#production, #marketing, #coding)</span>
-          <input className='form_input' placeholder='#tag' required value={prompt.tag} onChange={(e) => handlePrompt({...prompt, tag: e.target.value})}/>
+          <input className='form_input' placeholder='#tag' required value={prompt.tag} onChange={(e) => setPrompt({...prompt, tag: e.target.value})}/>
         </label>
 
         <div className='flex-end gap-5'>
