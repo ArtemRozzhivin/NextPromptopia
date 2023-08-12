@@ -7,6 +7,15 @@ const PromptCard = ({prompt}) => {
   const [copied, setCopied] = useState('')
   console.log(prompt.creator, 'prompt.creator')
 
+  const handleCopy = () => {
+    setCopied(prompt.text)
+    navigator.clipboard.writeText(prompt.text)
+
+    setTimeout(() => {
+      setCopied('')
+    }, 3000)
+  }
+
   return (
     <div className='prompt_card'>
       <div className='flex items-start justify-between gap-5'>
@@ -19,7 +28,7 @@ const PromptCard = ({prompt}) => {
           <p className='font-inter text-sm text-gray-500'>{prompt.creator.email}</p>
         </div>
 
-        <div className='copy_btn'>
+        <div className='copy_btn' onClick={handleCopy}>
           <Image src={
               copied === prompt.text
                 ? "/assets/icons/tick.svg"
