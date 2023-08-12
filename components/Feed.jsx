@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import PromptCard from './PromptCard'
+import { useSession } from 'next-auth/react'
 
 const PromtsList = ({data}) => {
   return <ul className='mt-16 prompt_layout'>
@@ -10,6 +11,7 @@ const PromtsList = ({data}) => {
 }
 
 const Feed = () => {
+  const {data: session} = useSession();
   const [allPrompts, setAllPrompts] = useState([])
 
   
@@ -34,8 +36,9 @@ const Feed = () => {
       <input value={searchText} onChange={(e) => setSearchText(e.target.value)} className='search_input peer' required type='text' placeholder='Search for a tag or a username'/>
     </form>
 
+
     {/* All prompts */}
-    <PromtsList data={allPrompts}/>
+    {session?.user && <PromtsList data={allPrompts}/>}
 
     {/* Search prompts */}
   </section>;

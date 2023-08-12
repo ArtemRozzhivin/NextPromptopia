@@ -5,13 +5,13 @@ import React, {useState} from 'react'
 
 const PromptCard = ({prompt}) => {
   const [copied, setCopied] = useState('')
-  console.log(prompt)
+  console.log(prompt.creator, 'prompt.creator')
 
   return (
     <div className='prompt_card'>
       <div className='flex items-start justify-between gap-5'>
         <div className='flex justify-start items-center cursor-pointer' onClick={() => {}}>
-          <Image className='rounded-full object-contain' width={40} height={40} src='/assets/images/logo.svg' alt='user_image'/>
+          <Image className='rounded-full object-contain' width={40} height={40} src={prompt.creator.image} alt='user_image'/>
         </div>
 
         <div className='flex flex-col'>
