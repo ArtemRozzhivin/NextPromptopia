@@ -4,9 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import {getProviders, signIn, signOut, useSession} from 'next-auth/react'
+import { useRouter } from 'next/navigation';
 
 const Nav = () => {
   const {data: session} = useSession();
+  const router = useRouter()
   const [isToggleDropdown, setToggleDropdown] = useState(false)
   const [providers, setProviders] = useState(null);
 
@@ -19,6 +21,11 @@ const Nav = () => {
 
     setUpProvider()
   }, [])
+
+  const handleSigtnOut = async () => {
+    await signOut()
+    router.push('/')
+  }
 
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
@@ -34,11 +41,13 @@ const Nav = () => {
         <Link href="/create-prompt" className='black_btn'>
         Create Post
         </Link>
-        <button onClick={signOut} type='button' className='outline_btn'>
+        <button onClick={handleSigtnOut} type='button' className='outline_btn'>
         Sign Out
         </button>
 
+        <Link href="/profile">
         <Image src={session.user.image} width={35} height={35} className='rounded-full' alt='profile'/>
+        </Link>
       </div> : <>
       {providers && Object.values(providers).map((provider) => <button onClick={() => signIn(provider.id)} type='button' key={provider.name} className='black_btn'>Sign In</button>)}
       </>}
@@ -57,7 +66,7 @@ const Nav = () => {
             <Link className='dropdown_link' href="/profile">My Profile</Link>
             <Link className='dropdown_link' href="/create-prompt">Create Post</Link>
 
-            <button type='button' className='w-full black_btn mt-5'>
+            <button onClick={handleSigtnOut} type='button' className='w-full black_btn mt-5'>
             Sign Out
             </button>
             </div>

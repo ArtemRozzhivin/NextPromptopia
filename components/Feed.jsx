@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import PromptCard from './PromptCard'
 import { useSession } from 'next-auth/react'
 
-const PromtsList = ({data}) => {
+export const PromtsList = ({data}) => {
   return <ul className='mt-16 prompt_layout'>
     {data.map((prompt) => <PromptCard key={prompt._id} prompt={prompt}/>)}
   </ul>
