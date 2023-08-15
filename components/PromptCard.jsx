@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 
 const PromptCard = ({prompt, handleTagClick, handleEdit, handleDelete}) => {
   const {data: session} = useSession()
+  const router = useRouter()
   const pathname = usePathname()
   const [copied, setCopied] = useState('')
 
@@ -19,10 +20,16 @@ const PromptCard = ({prompt, handleTagClick, handleEdit, handleDelete}) => {
     }, 3000)
   }
 
+  const handleProfileClick = () => {
+    prompt.creator._id === session?.user.id 
+    ? router.push('/profile') 
+    : router.push(`/profile/${prompt.creator._id}?name=${prompt.creator.username}`)
+  }
+
   return (
     <div className='prompt_card shadow-md'>
       <div className='flex items-start justify-between gap-5'>
-        <div className='flex justify-start items-center cursor-pointer' onClick={() => {}}>
+        <div onClick={handleProfileClick} className='flex justify-start items-center cursor-pointer'>
           <Image className='rounded-full object-contain' width={40} height={40} src={prompt.creator.image} alt='user_image'/>
         </div>
 
