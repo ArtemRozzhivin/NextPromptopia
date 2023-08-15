@@ -25,9 +25,25 @@ const MyProfile = () => {
     router.push(`/update-prompt?id=${prompt._id}`)
   }
 
-  const handleDelete = () => {
-    
-}
+  const handleDelete = async (prompt) => {
+    const confirmDelete = confirm('Are you sure you want to delete the prompt?')
+
+    if(!confirmDelete) return
+
+    try {
+      const response = await fetch(`api/prompt/${prompt._id}`, {
+        method: "DELETE"
+      })
+
+      const filtersPosts = usersPrompts.filter((item) => item._id !== prompt._id)
+      setUsersPrompts(filtersPosts)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  console.log(usersPrompts, 'usersPrompts')
 
   return (
     <div>
