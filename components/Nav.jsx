@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import {getProviders, signIn, signOut, useSession} from 'next-auth/react'
+import { getProviders, signIn, signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 
 const Nav = () => {
@@ -23,8 +23,7 @@ const Nav = () => {
   }, [])
 
   const handleSigtnOut = async () => {
-    await signOut()
-    router.push('/')
+    await signOut({ callbackUrl: '/' })
   }
 
   return (
@@ -41,9 +40,9 @@ const Nav = () => {
         <Link href="/create-prompt" className='black_btn'>
         Create Post
         </Link>
-        <button onClick={handleSigtnOut} type='button' className='outline_btn'>
+        <Link href='/' onClick={handleSigtnOut} type='button' className='outline_btn'>
         Sign Out
-        </button>
+        </Link>
 
         <Link href="/profile">
         <Image src={session.user.image} width={35} height={35} className='rounded-full' alt='profile'/>

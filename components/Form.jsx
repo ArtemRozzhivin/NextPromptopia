@@ -21,8 +21,8 @@ const Form = ({type, prompt, setPrompt, submitting, handleSubmiting}) => {
         </label>
 
         <label>
-          <span className='font-satoshi font-semibold text-base text-gray-700'>Tag of prompt (#production, #marketing, #coding)</span>
-          <input className='form_input' placeholder='#tag' required value={prompt.tag} onChange={(e) => setPrompt({...prompt, tag: e.target.value})}/>
+          <span className='font-satoshi font-semibold text-base text-gray-700'>Tag of prompt (production, marketing, coding)</span>
+          <input className='form_input' placeholder='tag' required value={prompt.tag} onChange={(e) => setPrompt({...prompt, tag: e.target.value})}/>
         </label>
 
         <div className='flex-end gap-5'>
