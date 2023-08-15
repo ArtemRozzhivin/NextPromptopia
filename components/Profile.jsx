@@ -11,7 +11,7 @@ const Profile = ({name, desc, data, handleEdit, handleDelete}) => {
       <p className='desc'>{desc}</p>
 
       <ul className='mt-10 prompt_layout'>
-        {data.map((prompt) => <PromptCard key={prompt._id} prompt={prompt} handleEdit={handleEdit} handleDelete={handleEdit} />)}
+        {data.map((prompt) => <PromptCard key={prompt._id} prompt={prompt} handleEdit={() => handleEdit(prompt)} handleDelete={() => handleDelete(prompt)} />)}
       </ul>
 
     </section>

@@ -26,7 +26,7 @@ const Form = ({type, prompt, setPrompt, submitting, handleSubmiting}) => {
         </label>
 
         <div className='flex-end gap-5'>
-          <Link className='outline_btn' href="/">Cancel</Link>
+          <Link className='outline_btn' href={type === 'Edit' ? '/profile' : '/'}>Cancel</Link>
 
           <button className='primary_btn' disabled={submitting} type='submit'>{submitting ? <span>{type} prompt...</span> : <span>{type} prompt</span>}</button>
         </div>
