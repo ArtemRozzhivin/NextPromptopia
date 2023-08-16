@@ -30,12 +30,12 @@ const PromptCard = ({prompt, handleTagClick, handleEdit, handleDelete}) => {
     <div className='prompt_card shadow-md'>
       <div className='flex items-start justify-between gap-5'>
         <div onClick={handleProfileClick} className='flex justify-start items-center cursor-pointer'>
-          <Image className='rounded-full object-contain' width={40} height={40} src={prompt.creator.image} alt='user_image'/>
+          <Image className='rounded-full object-contain' width={40} height={40} src={prompt.creator?.image ? prompt.creator.image : '/assets/images/user.png'} alt='user_image'/>
         </div>
 
         <div className='flex flex-col'>
-          <p className='font-satoshi font-semibold text-gray-900'>{prompt.creator.username}</p>
-          <p className='font-inter text-sm text-gray-500'>{prompt.creator.email}</p>
+          <p className='font-satoshi font-semibold text-gray-900'>{prompt.creator?.username}</p>
+          <p className='font-inter text-sm text-gray-500'>{prompt.creator?.email}</p>
         </div>
 
         <div className='copy_btn shadow-md' onClick={handleCopy}>

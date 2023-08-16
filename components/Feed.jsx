@@ -14,6 +14,7 @@ const Feed = () => {
   const {data: session} = useSession();
   const [allPrompts, setAllPrompts] = useState([])
 
+  console.log(allPrompts, 'allPrompts')
   
   // Search states
   const [searchText, setSearchText] = useState('')
